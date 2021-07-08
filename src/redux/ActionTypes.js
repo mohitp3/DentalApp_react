@@ -1,0 +1,7 @@
+export const SET_APPOINTMENT = "SET_APPOINTMENT"
+
+export const GET_SLIDERiMAGE = "GET_SLIDERiMAGE"
+
+export const GET_ABOUTINFO = "GET_ABOUTINFO"
+
+

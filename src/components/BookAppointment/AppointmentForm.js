@@ -1,20 +1,28 @@
-import React,{useState} from 'react'
 
+import React,{useState , useEffect} from 'react'
+import { useDispatch, useSelector } from "react-redux";
+import { addAppointmentInitiate } from '../../redux/Actions';
 
 const AppointmentForm = () => {
+  const dispatch = useDispatch();
+
+  const { apointments } = useSelector((state) => state.data);
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
     const [appointmentDate,setAppointmentDate] = useState("");
     const [message,setMessage] = useState("");
+
+    // useEffect(() => {
+    //   console.log(appointment)
+    // }, [apointment, dispatch]);
     
     const handleSubmit = (e)=>{
         e.preventDefault();
-        console.log(name,email,appointmentDate,message)
+        dispatch(addAppointmentInitiate(name,email,appointmentDate,message))
         setName("")
         setEmail("")
         setAppointmentDate("")
         setMessage("")
-
     }
     return (
         <div className="col-md-4">
@@ -36,7 +44,7 @@ const AppointmentForm = () => {
                     </div>
                     <div className="col-sm-12">
                       <div className="form-group mb-10">
-                        <input name="form_appontment_date" className="form-control required datetime-picker" type="date" placeholder="Appoinment Date &amp; Time" aria-required="true" value={appointmentDate} onChange={e=>setAppointmentDate(e.target.value)} />
+                        <input name="form_appontment_date" className="form-control required datetime-picker" type="datetime-local" placeholder="Appoinment Date &amp; Time" aria-required="true" value={appointmentDate} onChange={e=>setAppointmentDate(e.target.value)} />
                       </div>
                     </div>
                   </div>
@@ -49,30 +57,6 @@ const AppointmentForm = () => {
                   </div>
                 </form>
 
-                {/* <!-- Appointment Form Validation-->
-                <script>
-                  $("#appointment_form_at_home").validate({
-                    submitHandler: function(form) {
-                      var form_btn = $(form).find('button[type="submit"]');
-                      var form_result_div = '#form-result';
-                      $(form_result_div).remove();
-                      form_btn.before('<div id="form-result" className="alert alert-success" role="alert" style="display: none;"></div>');
-                      var form_btn_old_msg = form_btn.html();
-                      form_btn.html(form_btn.prop('disabled', true).data("loading-text"));
-                      $(form).ajaxSubmit({
-                        dataType:  'json',
-                        success: function(data) {
-                          if( data.status == 'true' ) {
-                            $(form).find('.form-control').val('');
-                          }
-                          form_btn.prop('disabled', false).html(form_btn_old_msg);
-                          $(form_result_div).html(data.message).fadeIn('slow');
-                          setTimeout(function(){ $(form_result_div).fadeOut('slow') }, 6000);
-                        }
-                      });
-                    }
-                  });
-                </script> */}
               </div>
             </div>
     )
