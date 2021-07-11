@@ -22,6 +22,7 @@ function App() {
         active={loading}
         spinner={<BeatLoader color="#FFA500" size={30} />}
         text=""
+        color="#ffffff"
       >
         <Header />
         <Slider />

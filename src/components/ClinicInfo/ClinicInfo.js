@@ -28,11 +28,7 @@ const ClinicInfo = () => {
                 <div className="col-xs-12 col-sm-6 col-md-3 mb-50">
                   <div className="funfact text-center">
                     <i className="flaticon-medical-male100 text-theme-colored"></i>
-                    <h2
-                      data-animation-duration="2000"
-                      data-value="10"
-                      className="animate-number font-38 appeared"
-                    >
+                    <h2 className="  font-38 appeared">
                       <CountUp start={0} end={item.dentists} duration={3} />
                     </h2>
                     <h5 className="text-uppercase mb-0">
@@ -43,11 +39,7 @@ const ClinicInfo = () => {
                 <div className="col-xs-12 col-sm-6 col-md-3 mb-50">
                   <div className="funfact text-center">
                     <i className="flaticon-medical-family21 text-theme-colored"></i>
-                    <h2
-                      data-animation-duration="2000"
-                      data-value="2480"
-                      className="animate-number font-38 appeared"
-                    >
+                    <h2 className="  font-38 appeared">
                       <CountUp start={0} end={item.patients} duration={3} />
                     </h2>
                     <h5 className="text-uppercase mb-0">Setisfied Patient</h5>
@@ -56,11 +48,7 @@ const ClinicInfo = () => {
                 <div className="col-xs-12 col-sm-6 col-md-3 mb-50">
                   <div className="funfact text-center">
                     <i className="flaticon-medical-hospital17 text-theme-colored"></i>
-                    <h2
-                      data-animation-duration="2000"
-                      data-value="40"
-                      className="animate-number font-38 appeared"
-                    >
+                    <h2 className="  font-38 appeared">
                       <CountUp start={0} end={item.rooms} duration={3} />
                     </h2>
                     <h5 className="text-uppercase mb-0">Hospital Rooms</h5>
@@ -69,11 +57,7 @@ const ClinicInfo = () => {
                 <div className="col-xs-12 col-sm-6 col-md-3 mb-50">
                   <div className="funfact text-center">
                     <i className="flaticon-medical-hospital36 text-theme-colored"></i>
-                    <h2
-                      data-animation-duration="2000"
-                      data-value="20"
-                      className="animate-number font-38 appeared"
-                    >
+                    <h2 className="  font-38 appeared">
                       <CountUp start={0} end={item.machines} duration={3} />
                     </h2>
                     <h5 className="text-uppercase mb-0">Our Machines</h5>
