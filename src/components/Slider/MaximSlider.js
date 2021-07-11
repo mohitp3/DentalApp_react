@@ -1,45 +1,62 @@
-import React,{useEffect} from "react";
+import React,{useEffect,useState} from "react";
 import { useDispatch,useSelector } from "react-redux";
 import { getSliderInitiate } from "../../redux/Actions";
+import "./MaximumSlider.css";
 
 const MaximSlider = () => {
   const { sliderImages } = useSelector((state) => state.data);
   const dispatch = useDispatch();
 
+  const[index,setIndex] = useState(0);
+
+    useEffect(()=>{
+        const lastIndex = sliderImages.length - 1;
+        if(index < 0){
+            setIndex(lastIndex)
+        }
+        if(index > lastIndex){
+            setIndex(0)
+        }
+    },[sliderImages.length, index])
+    useEffect(()=>{
+        let slider = setInterval(()=>{
+            setIndex(index+1)
+        },5000);
+        return()=>{
+            clearInterval(slider)
+        }
+
+    },[index])
+
   useEffect(() => {
     dispatch(getSliderInitiate())
     }, [dispatch]);
-  return (
-    <div className="maximage-slider">
-      <div
-        id="maximage"
-        className="z-index--1 mc-cycle"
-        style={{width: "1600px", height:" 340px"}}
-      >
-        {sliderImages && sliderImages.map((item,ind)=>(
-          <div
-          key={item._id}
-          className="mc-image "
-          title=""
-          style = {{backgroundImage:'url("https://dentalapp-nodebackend.herokuapp.com/'+ item.imgUrl +'")',backgroundColor:'rgb(0, 0, 0)',position:"absolute",top: "0px", left: "0px", display: "block", zIndex: 3, opacity: 0, width: "1600px", height: "340px"}}
-          data-href=""
-        ></div>
-        ))
 
-        }       
-        
+
+    return (
+      <div >
+              {sliderImages.map((image,imgIndex)=>{
+
+                  let position = "nextSlide"
+                  if(imgIndex === index){
+                      position= "activeSlide"
+                  }
+                  if(imgIndex === index - 1 || (index ===0 && imgIndex === sliderImages.length-1)){
+                      position="lastSlide"
+                  }
+                  return <article className = {position} key={imgIndex}>
+                      <img src={"http://3.142.172.158:8000/"+ image.imgUrl} alt="banner-img" className="banner-img" />
+                  </article>
+              })}
+              {/* <p className = "prev" onClick={()=>setIndex(index-1)}>
+                      <ArrowBackIosIcon/>
+              </p>
+              <p className = "next" onClick={()=>setIndex(index+1)}>
+                      <ArrowForwardIosIcon/>
+              </p> */}
+          
       </div>
-      <div className="fullscreen-controls">
-        {" "}
-        <a className="img-prev">
-          <i className="pe-7s-angle-left"></i>
-        </a>{" "}
-        <a className="img-next">
-          <i className="pe-7s-angle-right"></i>
-        </a>{" "}
-      </div>
-    </div>
-  );
+  )
 };
 
 export default MaximSlider;

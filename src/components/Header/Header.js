@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Header = () => {
+  
     return (
         <header id="header" className="header">
         <div className="header-nav">
@@ -18,19 +19,19 @@ const Header = () => {
                     <a href="#home">Home</a>
                   </li>
                   <li>
-                    <a href="#">Appointment</a>
+                    <a href="" onClick={(e)=>{e.preventDefault();document.querySelector("#about").scrollIntoView({behavior: "smooth"});}}>Appointment</a>
                   </li>
                   <li>
-                    <a href="#"> Our services</a>
+                    <a href="" onClick={(e)=>{e.preventDefault();document.querySelector("#services").scrollIntoView({behavior: "smooth"});}}> Our services</a>
                   </li>
                   <li>
-                    <a href="#">Clinic Info</a>
+                    <a href="" onClick={(e)=>{e.preventDefault();document.querySelector("#clinicInfo").scrollIntoView({behavior: "smooth"});}}>Clinic Info</a>
                   </li>
                   <li>
-                    <a href="#">Gallery</a>
+                    <a href="" onClick={(e)=>{e.preventDefault();document.querySelector("#gallery").scrollIntoView({behavior: "smooth"});}}>Gallery</a>
                   </li>
                   <li>
-                    <a href="#"> Blogs</a>
+                    <a href="" onClick={(e)=>{e.preventDefault();document.querySelector("#blog").scrollIntoView({behavior: "smooth"});}}> Blogs</a>
                   </li>
                 </ul>
               </nav>

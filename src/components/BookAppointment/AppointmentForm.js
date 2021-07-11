@@ -1,21 +1,18 @@
 
-import React,{useState , useEffect} from 'react'
-import { useDispatch, useSelector } from "react-redux";
+import React,{useState } from 'react'
+import { useDispatch } from "react-redux";
 import { addAppointmentInitiate } from '../../redux/Actions';
 
 const AppointmentForm = () => {
   const dispatch = useDispatch();
 
-  const { apointments } = useSelector((state) => state.data);
+  // const { apointments } = useSelector((state) => state.data);
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
     const [appointmentDate,setAppointmentDate] = useState("");
     const [message,setMessage] = useState("");
 
-    // useEffect(() => {
-    //   console.log(appointment)
-    // }, [apointment, dispatch]);
-    
+   
     const handleSubmit = (e)=>{
         e.preventDefault();
         dispatch(addAppointmentInitiate(name,email,appointmentDate,message))
