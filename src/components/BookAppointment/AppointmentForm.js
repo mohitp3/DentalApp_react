@@ -9,7 +9,7 @@ const AppointmentForm = () => {
   // const { apointments } = useSelector((state) => state.data);
     const [name,setName] = useState("");
     const [email,setEmail] = useState("");
-    const [appointmentDate,setAppointmentDate] = useState("");
+    const [appointmentDate,setAppointmentDate] = useState(new Date().toISOString().substr(0,16));
     const [message,setMessage] = useState("");
 
    

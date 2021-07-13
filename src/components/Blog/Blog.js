@@ -1,8 +1,10 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getBlogInitiate } from "../../redux/Actions";
 import { makeStyles } from "@material-ui/core/styles";
-
+import ItemsCarousel from 'react-items-carousel';
+import ChevronRightIcon from '@material-ui/icons/ChevronRight';
+import ChevronLeftSharpIcon from '@material-ui/icons/ChevronLeftSharp';
 import Card from "@material-ui/core/Card";
 import CardActionArea from "@material-ui/core/CardActionArea";
 import CardContent from "@material-ui/core/CardContent";
@@ -18,10 +20,31 @@ const useStyles = makeStyles({
   },
 });
 
+const responsive = {
+  superLargeDesktop: {
+    // the naming can be any, depends on you.
+    breakpoint: { max: 4000, min: 3000 },
+    items: 5,
+  },
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 3,
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 2,
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+  },
+};
+
 const Blog = () => {
   const classes = useStyles();
   const { blogs } = useSelector((state) => state.data);
   const dispatch = useDispatch();
+  const [activeItemIndex,setActiveItem] = useState(0)
 
   useEffect(() => {
     dispatch(getBlogInitiate());
@@ -43,16 +66,26 @@ const Blog = () => {
           </div>
         </div>
         <div className="row">
-          <div className="col-md-12">
-            <div>
+          <div className={"col-md-12 "}>
+          <ItemsCarousel
+        numberOfCards={3}
+        gutter={12}
+        showSlither={true}
+        firstAndLastGutter={true}
+        requestToChangeActive={setActiveItem}
+        activeItemIndex={activeItemIndex}
+        activePosition={'center'}
+        chevronWidth={24}
+        rightChevron={<ChevronRightIcon fontSize="large" />}
+        leftChevron={<ChevronLeftSharpIcon fontSize="large" />}
+        outsideChevron={false}
+      >
               {blogs &&
                 blogs.map((item, index) => {
                   // if (index < 3) {
-                    return (
-                      <Card
-                        className={(classes.root, "col-md-3")}
-                        key={item._id}
-                      >
+                  return (
+                    <div  key={item._id}>
+                      <Card  className={classes.root}>
                         <CardActionArea>
                           <CardMedia
                             className={classes.media}
@@ -77,61 +110,10 @@ const Blog = () => {
                           </CardContent>
                         </CardActionArea>
                       </Card>
-                    );
-                  // }
-
-                  // <div key={item._id} className="item">
-                  //   <article
-                  //     className="post clearfix maxwidth600 mb-30 wow fadeInRight"
-                  //     data-wow-delay=".2s"
-                  //   >
-                  //     <div className="entry-header">
-                  //       <div className="post-thumb thumb">
-                  //         <img
-                  //           src={"http://3.142.172.158:8000/" + item.imageUrl}
-                  //           alt=""
-                  //           className="img-responsive img-fullwidth"
-                  //         />
-                  //       </div>
-                  //     </div>
-                  //     <div className="bg-theme-colored2 p-5 text-center pt-10 pb-10">
-                  //       <span className="mb-10 text-white mr-10 font-13">
-                  //         <i className="fa fa-calendar mr-5 text-white"></i>21
-                  //         February
-                  //       </span>
-                  //       <span className="mb-10 text-white mr-10 font-13">
-                  //         <i className="fa fa-commenting-o mr-5 text-white"></i>{" "}
-                  //         214 Comments
-                  //       </span>
-                  //       <span className="mb-10 text-white mr-10 font-13">
-                  //         <i className="fa fa-heart-o mr-5 text-white"></i> 895
-                  //         Likes
-                  //       </span>
-                  //     </div>
-                  //     <div className="entry-content bg-lighter p-20 pr-10">
-                  //       <div className="entry-meta mt-0 no-bg no-border">
-                  //         <div className="event-content">
-                  //           <h3 className="entry-title text-white text-capitalize m-0">
-                  //             <a href="#">{item.title}</a>
-                  //           </h3>
-                  //         </div>
-                  //       </div>
-                  //       <p className="mt-10">{item.description}</p>
-                  //       <div className="mt-10">
-                  //         {" "}
-                  //         <a
-                  //           href="blog-single-left-sidebar.html"
-                  //           className="btn btn-theme-colored btn-sm"
-                  //         >
-                  //           Read More
-                  //         </a>{" "}
-                  //       </div>
-                  //       <div className="clearfix"></div>
-                  //     </div>
-                  //   </article>
-                  // </div>
+                    </div>
+                  );
                 })}
-            </div>
+            </ItemsCarousel>
           </div>
         </div>
       </div>
