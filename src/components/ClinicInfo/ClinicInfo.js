@@ -29,7 +29,7 @@ const ClinicInfo = () => {
                   <div className="funfact text-center">
                     <i className="flaticon-medical-male100 text-theme-colored"></i>
                     <h2 className="  font-38 appeared">
-                      <CountUp start={0} end={item.dentists} duration={3} />
+                      <CountUp start={0} end={item.dentists} duration={10} />
                     </h2>
                     <h5 className="text-uppercase mb-0">
                       Professional Dentists

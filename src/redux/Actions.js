@@ -1,6 +1,7 @@
 import * as types from "./ActionTypes";
 import axios from "axios";
 
+
 export const setLoader = (data) => ({
   type: types.LOADER,
   payload: data,
@@ -38,24 +39,18 @@ export const getClinicInfo = (data) => ({
     payload: data,
   });
 export const addAppointmentInitiate = (
-  name,
-  email,
-  appointmentDate,
-  message
+  data,
+  notify
 ) => {
   return (dispatch) => {
     axios
-      .post("http://3.142.172.158:8000/api/addAppointment", {
-        name,
-        email,
-        appointmentDate,
-        message,
-      })
+      .post("http://3.142.172.158:8000/api/addAppointment", data)
       .then((response) => {
-        dispatch(setAppointment(response.data));
+        notify("success");
+        dispatch(setAppointment(response.data));        
       })
       .catch((err) => {
-        console.log(err);
+        notify("error");
       });
   };
 };

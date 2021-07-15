@@ -11,7 +11,8 @@ import Gallery from "./components/Gallery/Gallery";
 import Header from "./components/Header/Header";
 import Services from "./components/Services/Services";
 import { useSelector } from "react-redux";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import Slider from "./components/Slider/Slider";
 
 function App() {
@@ -34,6 +35,17 @@ function App() {
       <Gallery />
       <Blog />
       <Footer />
+      <ToastContainer
+        position="bottom-center"
+        autoClose={2000}
+        hideProgressBar
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss={false}
+        draggable
+        pauseOnHover
+      />
     </div>
   );
 }
