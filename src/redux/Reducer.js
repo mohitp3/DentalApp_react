@@ -53,7 +53,7 @@ const dentalReducer = (state = initialState, action) => {
     case types.GET_GALLERY:
       return {
         ...state,
-        gallery: payload,
+        gallery: payload.images,
       };
       case types.GET_BLOG:
         return {
